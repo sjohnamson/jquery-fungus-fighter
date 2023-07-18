@@ -10,7 +10,7 @@ let mushHP = 100
 
 
 function onReady() {
-    
+
     // Attack butotn listener/handlers
     $('.attack-btn').on('click', handleAttack);
 
@@ -36,34 +36,32 @@ function handleAttack() {
     } else if ($(this).hasClass('star-fire')) {
         yourAP -= 33;
         mushHP -= 25;
-    } 
+    }
 
     // render new AP and HP
-    render ();
+    render();
 }
 
 function render() {
     // check to see if AP or HP are below 0
     if (mushHP <= 0) {
-        $('.ap-text').text(`
-        0 AP
-    `);
+        $('.hp-text').text(`0 AP`);
         $('.freaky-fungus').addClass('dead').removeClass('walk');
         $('.attack-btn').attr('disabled', true);
-    } else if (mushHP > 0) {
-        $('.hp-text').text(`
-        ${mushHP} HP
-    `)
-    } if (yourAP <= 0) {
-        $('.ap-text').text(`
-        0 AP
-    `);
+        $('#hp-meter').val(0);
+    } else if (yourAP <= 0) {
+        $('.ap-text').text(`0 AP`);
         $('.freaky-fungus').addClass('jump').removeClass('walk');
         $('.attack-btn').attr('disabled', true);
-    } else if (yourAP > 0) {
+        $('#ap-meter').val(0);
+    } else {
         $('.ap-text').text(`
-        ${yourAP} AP
+            ${yourAP} AP
     `)
-    }
-
-}
+        $('.hp-text').text(`
+            ${mushHP} HP
+    `)
+        $('#hp-meter').val(mushHP);
+        $('#ap-meter').val(yourAP);
+        }
+ }
