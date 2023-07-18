@@ -8,20 +8,24 @@ $(document).ready(onReady);
 let yourAP = 100
 let mushHP = 100
 
-
 function onReady() {
 
     // Attack butotn listener/handlers
     $('.attack-btn').on('click', handleAttack);
 
-    // 🧠 Remember
-    // - Handle events that ->
-    // - Updates state which is ->
-    // - Rendered to the DOM
+    setInterval(mushRegen, 1000);
 
-    // call render
+    function mushRegen() {
+    if (mushHP < 50) {
+        mushHP++;
+        render();
+    }
+}
 
 }
+
+// -------------- On Click Functions
+
 // Arcane Button click function
 function handleAttack() {
     if ($(this).hasClass('arcane-scepter')) {
@@ -42,6 +46,7 @@ function handleAttack() {
     render();
 }
 
+// ---------- Render Functions
 function render() {
     // check to see if AP or HP are below 0
     if (mushHP <= 0) {
@@ -65,3 +70,6 @@ function render() {
         $('#ap-meter').val(yourAP);
         }
  }
+
+
+
